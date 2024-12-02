@@ -7,4 +7,4 @@
 - You can also modify the ini file to match your specific game needs.
 ------------------------------------------
 ## Guide Link
-[ML Game Controller Remap Guide]([https://www.example.com](https://mean-littles-app.gitbook.io/mean-littles-app-docs))
+[ML Game Controller Remap Guide](https://mean-littles-app.gitbook.io/mean-littles-app-docs)
