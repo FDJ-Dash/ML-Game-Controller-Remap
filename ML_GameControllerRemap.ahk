@@ -186,7 +186,7 @@ if ControllerNumber <= 0
 DonationsMenuCardanoHandler(*){
 ShowCardano:
         Cardano := Gui("+AlwaysOnTop")
-        
+
 		Cardano.BackColor := "0x2F2F2F"
 		Cardano.Add("Picture", "x-120 y0 w712 h300", DonationsLib . "\CardanoAddress.png")
 		Cardano.SetFont("s9 cLime", "Comic Sans MS")
@@ -239,7 +239,7 @@ MenuHandlerAbout(*)
 {
 	ShowAbout:
         About := Gui("+AlwaysOnTop")
-        
+
 		About.BackColor := "0x2F2F2F"
 		About.Add("Picture", "x-32 y0 w712 h300", ImageLib . "\MLGTBackground2.png")
         About.Add("Picture", "x9 y10 w64 h64", IconLib . "\MLCR.ico")
@@ -270,7 +270,7 @@ MenuHandlerAbout(*)
 ExitMsg(*){
 	ShowExit:
         Exitmsg := Gui("+AlwaysOnTop")
-        
+
 		Exitmsg.BackColor := "0x2F2F2F"
 		Exitmsg.Add("Picture", "x-32 y0 w712 h300", ImageLib . "\MLGTBackground2.png")
         Exitmsg.Add("Picture", "x9 y10 w64 h64", IconLib . "\MLCR.ico")
@@ -298,7 +298,7 @@ MenuHandlerExit(*){
 MenuHandlerGuide(*) {
 	ShowGuide:
         GuideMsg := Gui("+AlwaysOnTop")
-        
+
 		GuideMsg.BackColor := "0x2F2F2F"
 		GuideMsg.Add("Picture", "x-32 y0 w712 h300", ImageLib . "\MLGTBackground2.png")
         GuideMsg.Add("Picture", "x9 y10 w64 h64", IconLib . "\MLCR.ico")
@@ -321,7 +321,7 @@ MenuHandlerGuide(*) {
         GuideMsg.Opt("+LastFound")
 		run HotkeyGuide
     Return
-	
+
 	Destroy(*){
 		GuideMsg.Destroy()
 	}
@@ -343,6 +343,7 @@ if ControllerAvailable == true {
 	ControllerName.Value := GetKeyState(ControllerNumber "JoyName")
 	cont_info := GetKeyState(ControllerNumber "JoyInfo")
 	axis_info := " -   -   -   -   -   -   -   -   -   -"
+	CoordMode "Mouse", "Screen"
 
 	; Controller AutoRun Loop
 	Loop {
@@ -606,7 +607,8 @@ if ControllerAvailable == true {
 					case CursorMovement.Value:
 						Send("{" . CtrlDownRotation . " up}")
 						Send("{" . ShiftDownRotation . " up}")
-						MouseMove(0, CursorSensUp, CursorSpeed, "R")  ; Move Cursor upwards
+						MouseGetPos(&x, &y)
+						DllCall("SetCursorPos", "int", x, "int", y + CursorSensUp)
 					case RotateCamera.Value:
 						Send("{" . CtrlDownRotation . " up}")
 						Send("{" . ShiftDownRotation . " up}")
@@ -627,7 +629,8 @@ if ControllerAvailable == true {
 					case CursorMovement.Value:
 						Send("{" . CtrlDownRotation . " up}")
 						Send("{" . ShiftDownRotation . " up}")
-						MouseMove(0, CursorSensDown, CursorSpeed, "R")  ; Move Cursor downwards
+						MouseGetPos(&x, &y)
+						DllCall("SetCursorPos", "int", x, "int", y + CursorSensDown)
 					case RotateCamera.Value:
 						Send("{" . CtrlDownRotation . " up}")
 						Send("{" . ShiftDownRotation . " up}")
@@ -635,7 +638,7 @@ if ControllerAvailable == true {
 					case RotateCameraCtrldown.Value:
 						Send("{" . ShiftDownRotation . " up}")
 						Send("{" . CtrlDownRotation . " down}")
-						Send("{" . RotateDown . " down}")	
+						Send("{" . RotateDown . " down}")
 					case RotateCameraShiftdown.Value:
 						Send("{" . CtrlDownRotation . " up}")
 						Send("{" . ShiftDownRotation . " down}")
@@ -677,7 +680,8 @@ if ControllerAvailable == true {
 					case CursorMovement.Value:
 						Send("{" . CtrlDownRotation . " up}")
 						Send("{" . ShiftDownRotation . " up}")
-						MouseMove(CursorSensLeft, 0, CursorSpeed, "R")  ; Move Mouse Left
+						MouseGetPos(&x, &y)
+						DllCall("SetCursorPos", "int", x + CursorSensLeft, "int", y)
 					case RotateCamera.Value:
 						Send("{" . CtrlDownRotation . " up}")
 						Send("{" . ShiftDownRotation . " up}")
@@ -698,7 +702,8 @@ if ControllerAvailable == true {
 					case CursorMovement.Value:
 						Send("{" . CtrlDownRotation . " up}")
 						Send("{" . ShiftDownRotation . " up}")
-						MouseMove(CursorSensRight, 0, CursorSpeed, "R")  ; Move Mouse Right
+						MouseGetPos(&x, &y)
+						DllCall("SetCursorPos", "int", x + CursorSensRight, "int", y)
 					case RotateCamera.Value:
 						Send("{" . CtrlDownRotation . " up}")
 						Send("{" . ShiftDownRotation . " up}")
@@ -782,7 +787,7 @@ if ControllerAvailable == true {
 			axis_info := " -   -   -   -   -   -   -   -   -   -"
 		}
 		TextAxisInfo.Value := axis_info
-		Sleep ControllerLoop		
+		Sleep ControllerLoop
 	} ; End Controller loop
 } ; End Controller Available
 ;----------------------------------------------------
