@@ -81,10 +81,12 @@ OptionsMenu.SetIcon("Edit &Ini File", IconLib . "\File.ico")
 
 DonationsMenu := Menu()
 MenuBar_Storage.Add("&Donations", DonationsMenu)
+DonationsMenu.Add("Buy me a coffee", DonationsMenuBMACoffeeHandler)
 DonationsMenu.Add("ADA Cardano network", DonationsMenuCardanoHandler)
 DonationsMenu.Add("EVM-compatible chains", DonationsMenuEVMHandler)
 DonationsMenu.Add("BTC - Bitcoin chain", DonationsMenuBTCHandler)
 
+DonationsMenu.SetIcon("Buy me a coffee", IconLib . "\Buymeacoffee.ico")
 DonationsMenu.SetIcon("ADA Cardano network", IconLib . "\ada_cardano.ico")
 DonationsMenu.SetIcon("EVM-compatible chains", IconLib . "\usdc.ico")
 DonationsMenu.SetIcon("BTC - Bitcoin chain", IconLib . "\bitcoin.ico")
@@ -186,7 +188,7 @@ if ControllerNumber <= 0
 DonationsMenuCardanoHandler(*){
 ShowCardano:
         Cardano := Gui("+AlwaysOnTop")
-
+        
 		Cardano.BackColor := "0x2F2F2F"
 		Cardano.Add("Picture", "x-120 y0 w712 h300", DonationsLib . "\CardanoAddress.png")
 		Cardano.SetFont("s9 cLime", "Comic Sans MS")
@@ -234,23 +236,51 @@ ShowBTC:
     Return
 }
 
+DonationsMenuBMACoffeeHandler(*){
+ShowBMACoffee:
+        BMACoffee := Gui("+AlwaysOnTop")
+
+		BMACoffee.BackColor := "0x2F2F2F"
+		BMACoffee.Add("Picture", "x-120 y0 w712 h300", ImageLib . "\MLGTBackground2.png")
+		BMACoffee.Add("Picture", "x9 y10 w64 h64", IconLib . "\MLCR.ico")
+		BMACoffee.SetFont("s18 W700 Q4 cLime", "Georgia")
+        BMACoffee.Add("Text", "x80 y8", "ML Game Controller Remap")
+		BMACoffee.SetFont("s9 cLime", "Comic Sans MS")
+		BMACoffee.Add("Text", "x80 y45", "Mean Little's Game Controller Remap v0.51")
+		BMACoffee.SetFont()
+		BMACoffee.SetFont("s12 cLime", "Comic Sans MS")
+		BMACoffee.Add("Text", "x153 y130", " Buy me a coffee link: ")
+		BMACoffee.SetFont()
+		BMACoffee.SetFont("s20 Bold cLime", "Comic Sans MS")
+		LinkBMACoffee := BMACoffee.Add("Link", "x157 y160", "<a href=`"https://buymeacoffee.com/fdjdash`"> FDJ-Dash </a>")
+        LinkBMACoffee.Opt("Background808080")
+		BMACoffee.SetFont()
+		BMACoffee.SetFont("s12 cLime", "Comic Sans MS")
+		BMACoffee.Add("Text", "x187 y205", " Thank you! ")
+        BMACoffee.Title := "BMACoffee"
+        BMACoffee.Show("w470 h300")
+        ControlFocus(" ", "BMACoffee")
+        BMACoffee.Opt("+LastFound")
+    Return
+}
+
 ;----------------------------------------------------
 MenuHandlerAbout(*)
 {
 	ShowAbout:
         About := Gui("+AlwaysOnTop")
-
+        
 		About.BackColor := "0x2F2F2F"
 		About.Add("Picture", "x-32 y0 w712 h300", ImageLib . "\MLGTBackground2.png")
         About.Add("Picture", "x9 y10 w64 h64", IconLib . "\MLCR.ico")
 		About.SetFont("s18 W700 Q4 cLime", "Georgia")
         About.Add("Text", "x80 y8", "ML Game Controller Remap")
 		About.SetFont("s9 cLime", "Comic Sans MS")
-		About.Add("Text", "x80 y45", "Mean Little's Game Controller Remap v0.5")
+		About.Add("Text", "x80 y45", "Mean Little's Game Controller Remap v0.51")
         About.SetFont()
 		About.SetFont("s12 cLime", "Comic Sans MS")
 		About.Add("Text", "x80 y100", "Programmed and designed by:")
-		About.Add("Link", "x310 y100", "<a href=`"https://github.com/FDJ-Dash`">FDJ-Dash</a>")
+		About.Add("Link", "x310 y100", "<a href=`"https://github.com/FDJ-Dash/ML-Game-Controller-Remap`">FDJ-Dash</a>")
 		About.Add("Text", "x80 y130", "Also known as Mean Little")
 		About.SetFont()
 		About.SetFont("s9 cLime", "Comic Sans MS")
@@ -270,14 +300,14 @@ MenuHandlerAbout(*)
 ExitMsg(*){
 	ShowExit:
         Exitmsg := Gui("+AlwaysOnTop")
-
+        
 		Exitmsg.BackColor := "0x2F2F2F"
 		Exitmsg.Add("Picture", "x-32 y0 w712 h300", ImageLib . "\MLGTBackground2.png")
         Exitmsg.Add("Picture", "x9 y10 w64 h64", IconLib . "\MLCR.ico")
 		Exitmsg.SetFont("s18 W700 Q4 cLime", "Georgia")
         Exitmsg.Add("Text", "x80 y8", "ML Game Controller Remap")
 		Exitmsg.SetFont("s9 cLime", "Comic Sans MS")
-		Exitmsg.Add("Text", "x80 y45", "Mean Little's Game Controller Remap v0.5")
+		Exitmsg.Add("Text", "x80 y45", "Mean Little's Game Controller Remap v0.51")
 		Exitmsg.SetFont()
 		Exitmsg.SetFont("s12 cLime", "Comic Sans MS")
 		Exitmsg.Add("Text", "x80 y100", "ML Game Controller Remap will close in " ExitMessageTimeWait / 1000 " seconds")
@@ -298,14 +328,14 @@ MenuHandlerExit(*){
 MenuHandlerGuide(*) {
 	ShowGuide:
         GuideMsg := Gui("+AlwaysOnTop")
-
+        
 		GuideMsg.BackColor := "0x2F2F2F"
 		GuideMsg.Add("Picture", "x-32 y0 w712 h300", ImageLib . "\MLGTBackground2.png")
         GuideMsg.Add("Picture", "x9 y10 w64 h64", IconLib . "\MLCR.ico")
 		GuideMsg.SetFont("s18 W700 Q4 cLime", "Georgia")
         GuideMsg.Add("Text", "x80 y8", "ML Game Controller Remap")
 		GuideMsg.SetFont("s9 cLime", "Comic Sans MS")
-		GuideMsg.Add("Text", "x80 y45", "Mean Little's Game Controller Remap v0.5")
+		GuideMsg.Add("Text", "x80 y45", "Mean Little's Game Controller Remap v0.51")
 		GuideMsg.SetFont()
 		GuideMsg.SetFont("s12 cLime", "Comic Sans MS")
 		GuideMsg.Add("Text", "x80 y100", "The guide will open in your browser.")
@@ -321,7 +351,7 @@ MenuHandlerGuide(*) {
         GuideMsg.Opt("+LastFound")
 		run HotkeyGuide
     Return
-
+	
 	Destroy(*){
 		GuideMsg.Destroy()
 	}
@@ -638,7 +668,7 @@ if ControllerAvailable == true {
 					case RotateCameraCtrldown.Value:
 						Send("{" . ShiftDownRotation . " up}")
 						Send("{" . CtrlDownRotation . " down}")
-						Send("{" . RotateDown . " down}")
+						Send("{" . RotateDown . " down}")	
 					case RotateCameraShiftdown.Value:
 						Send("{" . CtrlDownRotation . " up}")
 						Send("{" . ShiftDownRotation . " down}")
@@ -787,7 +817,7 @@ if ControllerAvailable == true {
 			axis_info := " -   -   -   -   -   -   -   -   -   -"
 		}
 		TextAxisInfo.Value := axis_info
-		Sleep ControllerLoop
+		Sleep ControllerLoop		
 	} ; End Controller loop
 } ; End Controller Available
 ;----------------------------------------------------
