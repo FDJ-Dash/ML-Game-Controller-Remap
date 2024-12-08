@@ -4,8 +4,10 @@ SetWorkingDir(A_ScriptDir)
 Global IconLib := A_ScriptDir . "\Icons"
 , ImageLib := A_ScriptDir . "\Images"
 , DonationsLib:= A_ScriptDir . "\Donations"
-, HotkeyGuide := "https://mean-littles-app.gitbook.io/mean-littles-app-docs"
+, Guide := "https://mean-littles-app.gitbook.io/mean-littles-app-docs"
+, BuyMeACoffee := "https://buymeacoffee.com/fdjdash"
 , IniFile := A_ScriptDir . "\ML_GameControllerRemap.ini"
+, CurrentVersion := "0.52"
 ;----------------------------------------------------
 ; GUI Properties
 GameToolGui := Gui("+AlwaysOnTop")
@@ -187,111 +189,103 @@ if ControllerNumber <= 0
 ;----------------------------------------------------
 DonationsMenuCardanoHandler(*){
 ShowCardano:
-        Cardano := Gui("+AlwaysOnTop")
-        
+		Cardano := Gui("+AlwaysOnTop")
 		Cardano.BackColor := "0x2F2F2F"
 		Cardano.Add("Picture", "x-120 y0 w712 h300", DonationsLib . "\CardanoAddress.png")
 		Cardano.SetFont("s9 cLime", "Comic Sans MS")
 		Cardano.Add("Text", "x93 y10", " ADA - Cardano Chain - ADA Handle: $grey.dash")
 		EditADA := Cardano.Add("Edit", "x20 y245 w430 h40 +Readonly", "addr1qxlvz257exqmlfe9edzxgug3vfz59fajc4f6x3mr0053pqvqlegkyt3v299y5mjuxx0zk7ezpvesgqjp69g8q9whykzqtfz2u4")
-        EditADA.Opt("Background2F2F2F")
-        Cardano.Title := "Cardano"
-        Cardano.Show("w470 h300")
-        ControlFocus(" ", "Cardano")
-        Cardano.Opt("+LastFound")
-    Return
+		EditADA.Opt("Background2F2F2F")
+		Cardano.Title := "Cardano"
+		Cardano.Show("w470 h300")
+		ControlFocus(" ", "Cardano")
+		Cardano.Opt("+LastFound")
+	Return
 }
 ;----------------------------------------------------
 DonationsMenuEVMHandler(*){
 ShowUSDC:
-        EVM := Gui("+AlwaysOnTop")
-
+		EVM := Gui("+AlwaysOnTop")
 		EVM.BackColor := "0x2F2F2F"
 		EVM.Add("Picture", "x-120 y0 w712 h300", DonationsLib . "\USDCBaseAddress.png")
 		EVM.SetFont("s9 cLime", "Comic Sans MS")
 		EVM.Add("Text", "x65 y10", " Copi, USDC, Ethereum, BNB and any EVM-compatible chain")
 		EditEVM := EVM.Add("Edit", "x70 y245 w310 h20 +Readonly", "0xd6F28E0fDacee390Bee8a8E37cdBA458629bf184")
-        EditEVM.Opt("Background2F2F2F")
-        EVM.Title := "EVM"
-        EVM.Show("w470 h300")
-        ControlFocus(" ", "EVM")
-        EVM.Opt("+LastFound")
-    Return
+		EditEVM.Opt("Background2F2F2F")
+		EVM.Title := "EVM"
+		EVM.Show("w470 h300")
+		ControlFocus(" ", "EVM")
+		EVM.Opt("+LastFound")
+	Return
 }
 
 DonationsMenuBTCHandler(*){
 ShowBTC:
-        BTC := Gui("+AlwaysOnTop")
-
+		BTC := Gui("+AlwaysOnTop")
 		BTC.BackColor := "0x2F2F2F"
 		BTC.Add("Picture", "x-120 y0 w712 h300", DonationsLib . "\BtcAddress.png")
 		BTC.SetFont("s9 cLime", "Comic Sans MS")
 		BTC.Add("Text", "x170 y10", " BTC - Bitcoin chain")
 		EditBTC := BTC.Add("Edit", "x88 y245 w285 h20 +Readonly", "bc1qnh2lw9tmkte2yjq9lujc80qq7ke32ps0wj30ss")
-        EditBTC.Opt("Background2F2F2F")
-        BTC.Title := "BTC"
-        BTC.Show("w470 h300")
-        ControlFocus(" ", "BTC")
-        BTC.Opt("+LastFound")
-    Return
+		EditBTC.Opt("Background2F2F2F")
+		BTC.Title := "BTC"
+		BTC.Show("w470 h300")
+		ControlFocus(" ", "BTC")
+		BTC.Opt("+LastFound")
+	Return
 }
 
 DonationsMenuBMACoffeeHandler(*){
 ShowBMACoffee:
-        BMACoffee := Gui("+AlwaysOnTop")
-
+		BMACoffee := Gui("+AlwaysOnTop")
 		BMACoffee.BackColor := "0x2F2F2F"
 		BMACoffee.Add("Picture", "x-120 y0 w712 h300", ImageLib . "\MLGTBackground2.png")
 		BMACoffee.Add("Picture", "x9 y10 w64 h64", IconLib . "\MLCR.ico")
 		BMACoffee.SetFont("s18 W700 Q4 cLime", "Georgia")
-        BMACoffee.Add("Text", "x80 y8", "ML Game Controller Remap")
+		BMACoffee.Add("Text", "x80 y8", "ML Game Controller Remap")
 		BMACoffee.SetFont("s9 cLime", "Comic Sans MS")
-		BMACoffee.Add("Text", "x80 y45", "Mean Little's Game Controller Remap v0.51")
+		BMACoffee.Add("Text", "x80 y45", "Mean Little's Game Controller Remap v" CurrentVersion)
 		BMACoffee.SetFont()
 		BMACoffee.SetFont("s12 cLime", "Comic Sans MS")
-		BMACoffee.Add("Text", "x153 y130", " Buy me a coffee link: ")
-		BMACoffee.SetFont()
-		BMACoffee.SetFont("s20 Bold cLime", "Comic Sans MS")
-		LinkBMACoffee := BMACoffee.Add("Link", "x157 y160", "<a href=`"https://buymeacoffee.com/fdjdash`"> FDJ-Dash </a>")
-        LinkBMACoffee.Opt("Background808080")
+		BMACoffee.Add("Text", "x50 y135", "My buy me a coffee page will open in your browser.")
+		BMACoffee.Add("Text", "x137 y160", "You can close this message.")
 		BMACoffee.SetFont()
 		BMACoffee.SetFont("s12 cLime", "Comic Sans MS")
 		BMACoffee.Add("Text", "x187 y205", " Thank you! ")
-        BMACoffee.Title := "BMACoffee"
-        BMACoffee.Show("w470 h300")
-        ControlFocus(" ", "BMACoffee")
-        BMACoffee.Opt("+LastFound")
-    Return
+		BMACoffee.Title := "BMACoffee"
+		BMACoffee.Show("w470 h300")
+		ControlFocus(" ", "BMACoffee")
+		BMACoffee.Opt("+LastFound")
+		Run BuyMeACoffee
+	Return
 }
-
 ;----------------------------------------------------
 MenuHandlerAbout(*)
 {
 	ShowAbout:
-        About := Gui("+AlwaysOnTop")
-        
+		About := Gui("+AlwaysOnTop")
 		About.BackColor := "0x2F2F2F"
 		About.Add("Picture", "x-32 y0 w712 h300", ImageLib . "\MLGTBackground2.png")
-        About.Add("Picture", "x9 y10 w64 h64", IconLib . "\MLCR.ico")
+		About.Add("Picture", "x9 y10 w64 h64", IconLib . "\MLCR.ico")
 		About.SetFont("s18 W700 Q4 cLime", "Georgia")
-        About.Add("Text", "x80 y8", "ML Game Controller Remap")
+		About.Add("Text", "x80 y8", "ML Game Controller Remap")
 		About.SetFont("s9 cLime", "Comic Sans MS")
-		About.Add("Text", "x80 y45", "Mean Little's Game Controller Remap v0.51")
-        About.SetFont()
+		About.Add("Text", "x80 y45", "Mean Little's Game Controller Remap v" CurrentVersion)
+		About.SetFont()
 		About.SetFont("s12 cLime", "Comic Sans MS")
 		About.Add("Text", "x80 y100", "Programmed and designed by:")
 		About.Add("Link", "x310 y100", "<a href=`"https://github.com/FDJ-Dash/ML-Game-Controller-Remap`">FDJ-Dash</a>")
-		About.Add("Text", "x80 y130", "Also known as Mean Little")
+		About.Add("Text", "x80 y130", "Also known as Mean Little.")
 		About.SetFont()
 		About.SetFont("s9 cLime", "Comic Sans MS")
-		About.Add("Text", "x80 y200", "Made with AutoHotkey V2.0")
-        ogcButtonOK := About.Add("Button", "x370 y200 w80 h24", "OK")
+		About.Add("Text", "x30 y200", "Made with AutoHotkey V" A_AhkVersion . " " . (1 ? "Unicode" : "ANSI") . " " . (A_PtrSize == 8 ? "64-bit" : "32-bit"))
+		ogcButtonOK := About.Add("Button", "x370 y200 w80 h24", "OK")
 		ogcButtonOK.OnEvent("Click", Destroy)
-        About.Title := "About"
-        About.Show("w470 h240")
-        ControlFocus("Button1", "About")
-        About.Opt("+LastFound")
-    Return
+		About.Title := "About"
+		About.Show("w470 h240")
+		ControlFocus("Button1", "About")
+		About.Opt("+LastFound")
+	Return
 	Destroy(*){
 		About.Destroy()
 	}
@@ -299,26 +293,25 @@ MenuHandlerAbout(*)
 ;----------------------------------------------------
 ExitMsg(*){
 	ShowExit:
-        Exitmsg := Gui("+AlwaysOnTop")
-        
+		Exitmsg := Gui("+AlwaysOnTop")
 		Exitmsg.BackColor := "0x2F2F2F"
 		Exitmsg.Add("Picture", "x-32 y0 w712 h300", ImageLib . "\MLGTBackground2.png")
-        Exitmsg.Add("Picture", "x9 y10 w64 h64", IconLib . "\MLCR.ico")
+		Exitmsg.Add("Picture", "x9 y10 w64 h64", IconLib . "\MLCR.ico")
 		Exitmsg.SetFont("s18 W700 Q4 cLime", "Georgia")
-        Exitmsg.Add("Text", "x80 y8", "ML Game Controller Remap")
+		Exitmsg.Add("Text", "x80 y8", "ML Game Controller Remap")
 		Exitmsg.SetFont("s9 cLime", "Comic Sans MS")
-		Exitmsg.Add("Text", "x80 y45", "Mean Little's Game Controller Remap v0.51")
+		Exitmsg.Add("Text", "x80 y45", "Mean Little's Game Controller Remap v" CurrentVersion)
 		Exitmsg.SetFont()
 		Exitmsg.SetFont("s12 cLime", "Comic Sans MS")
-		Exitmsg.Add("Text", "x80 y100", "ML Game Controller Remap will close in " ExitMessageTimeWait / 1000 " seconds")
-        Exitmsg.Add("Text", "x80 y125", "Have a nice day!")
+		Exitmsg.Add("Text", "x45 y100", "ML Game Controller Remap will close in " ExitMessageTimeWait / 1000 " seconds.")
+		Exitmsg.Add("Text", "x175 y130", "Have a nice day!")
 		Exitmsg.SetFont()
 		Exitmsg.SetFont("s9 cLime", "Comic Sans MS")
-		Exitmsg.Add("Text", "x30 y200", "Made with AutoHotkey V2.0")
-        Exitmsg.Title := "Goodbye!"
-        Exitmsg.Show("w470 h240")
-        Exitmsg.Opt("+LastFound")
-    Return
+		Exitmsg.Add("Text", "x30 y200", "Made with AutoHotkey V" A_AhkVersion . " " . (1 ? "Unicode" : "ANSI") . " " . (A_PtrSize == 8 ? "64-bit" : "32-bit"))
+		Exitmsg.Title := "Goodbye!"
+		Exitmsg.Show("w470 h240")
+		Exitmsg.Opt("+LastFound")
+	Return
 }
 ;----------------------------------------------------
 MenuHandlerExit(*){
@@ -327,31 +320,30 @@ MenuHandlerExit(*){
 ;----------------------------------------------------
 MenuHandlerGuide(*) {
 	ShowGuide:
-        GuideMsg := Gui("+AlwaysOnTop")
-        
+		GuideMsg := Gui("+AlwaysOnTop")
 		GuideMsg.BackColor := "0x2F2F2F"
 		GuideMsg.Add("Picture", "x-32 y0 w712 h300", ImageLib . "\MLGTBackground2.png")
-        GuideMsg.Add("Picture", "x9 y10 w64 h64", IconLib . "\MLCR.ico")
+		GuideMsg.Add("Picture", "x9 y10 w64 h64", IconLib . "\MLCR.ico")
 		GuideMsg.SetFont("s18 W700 Q4 cLime", "Georgia")
-        GuideMsg.Add("Text", "x80 y8", "ML Game Controller Remap")
+		GuideMsg.Add("Text", "x80 y8", "ML Game Controller Remap")
 		GuideMsg.SetFont("s9 cLime", "Comic Sans MS")
-		GuideMsg.Add("Text", "x80 y45", "Mean Little's Game Controller Remap v0.51")
+		GuideMsg.Add("Text", "x80 y45", "Mean Little's Game Controller Remap v" CurrentVersion)
 		GuideMsg.SetFont()
 		GuideMsg.SetFont("s12 cLime", "Comic Sans MS")
-		GuideMsg.Add("Text", "x80 y100", "The guide will open in your browser.")
-        GuideMsg.Add("Text", "x80 y125", "You can close this message")
+		GuideMsg.Add("Text", "x105 y100", "The guide will open in your browser.")
+		GuideMsg.Add("Text", "x140 y125", "You can close this message.")
 		GuideMsg.SetFont()
 		GuideMsg.SetFont("s9 cLime", "Comic Sans MS")
-		GuideMsg.Add("Text", "x30 y200", "Made with AutoHotkey V2.0")
-        ogcButtonOK := GuideMsg.Add("Button", "x370 y200 w80 h24 Default", "OK")
+		GuideMsg.Add("Text", "x30 y200", "Made with AutoHotkey V" A_AhkVersion . " " . (1 ? "Unicode" : "ANSI") . " " . (A_PtrSize == 8 ? "64-bit" : "32-bit"))
+		ogcButtonOK := GuideMsg.Add("Button", "x370 y200 w80 h24 Default", "OK")
 		ogcButtonOK.OnEvent("Click", Destroy)
-        GuideMsg.Title := "Guide"
-        GuideMsg.Show("w470 h240")
-        ControlFocus("Button1", "Guide")
-        GuideMsg.Opt("+LastFound")
-		run HotkeyGuide
-    Return
-	
+		GuideMsg.Title := "Guide"
+		GuideMsg.Show("w470 h240")
+		ControlFocus("Button1", "Guide")
+		GuideMsg.Opt("+LastFound")
+		run Guide
+	Return
+
 	Destroy(*){
 		GuideMsg.Destroy()
 	}
@@ -368,7 +360,6 @@ EditIniFileHandler(*) {
 }
 ;----------------------------------------------------
 if ControllerAvailable == true {
-
 	TextOnOffController.Value := " Controller Found"
 	ControllerName.Value := GetKeyState(ControllerNumber "JoyName")
 	cont_info := GetKeyState(ControllerNumber "JoyInfo")
@@ -817,7 +808,7 @@ if ControllerAvailable == true {
 			axis_info := " -   -   -   -   -   -   -   -   -   -"
 		}
 		TextAxisInfo.Value := axis_info
-		Sleep ControllerLoop		
+		Sleep ControllerLoop
 	} ; End Controller loop
 } ; End Controller Available
 ;----------------------------------------------------
