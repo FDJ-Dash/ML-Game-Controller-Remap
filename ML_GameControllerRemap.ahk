@@ -7,7 +7,7 @@ Global IconLib := A_ScriptDir . "\Icons"
 , Guide := "https://mean-littles-app.gitbook.io/mean-littles-app-docs"
 , BuyMeACoffee := "https://buymeacoffee.com/fdjdash"
 , IniFile := A_ScriptDir . "\ML_GameControllerRemap.ini"
-, CurrentVersion := "0.52"
+, CurrentVersion := "0.53"
 ;----------------------------------------------------
 ; GUI Properties
 GameToolGui := Gui("+AlwaysOnTop")
@@ -275,7 +275,6 @@ MenuHandlerAbout(*)
 		About.SetFont("s12 cLime", "Comic Sans MS")
 		About.Add("Text", "x80 y100", "Programmed and designed by:")
 		About.Add("Link", "x310 y100", "<a href=`"https://github.com/FDJ-Dash/ML-Game-Controller-Remap`">FDJ-Dash</a>")
-		About.Add("Text", "x80 y130", "Also known as Mean Little.")
 		About.SetFont()
 		About.SetFont("s9 cLime", "Comic Sans MS")
 		About.Add("Text", "x30 y200", "Made with AutoHotkey V" A_AhkVersion . " " . (1 ? "Unicode" : "ANSI") . " " . (A_PtrSize == 8 ? "64-bit" : "32-bit"))
@@ -370,7 +369,8 @@ if ControllerAvailable == true {
 	Loop {
 		if RadioCtrlRemapYes.Value == true {
 			RadioCtrlRemapNo.Value := false
-			SB.SetText("Controller remap to keyboard active.")
+			MouseGetPos(&x, &y)
+			SB.SetText("Controller remap active.        X:" . x . " Y:" . y )
 			; Status info axis
 			try {
 					axis_info := " X" Round(GetKeyState(ControllerNumber "JoyX"))
@@ -804,7 +804,7 @@ if ControllerAvailable == true {
 				}
 			}
 		} else {
-			SB.SetText("Ready.")
+			SB.SetText("Controller Remap Off.")
 			axis_info := " -   -   -   -   -   -   -   -   -   -"
 		}
 		TextAxisInfo.Value := axis_info
